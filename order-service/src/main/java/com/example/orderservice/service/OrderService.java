@@ -10,13 +10,15 @@ public interface OrderService {
 
     Order getOrderById(Long id);
 
-    List<Order> getOrdersByUserId(Long userId);
+   // String getOrdersByUserId(Long userId,Long orderId);
 
     Order createOrder(Order order);
 
     Order updateOrder(Long id, Order order);
 
     void deleteOrder(Long id);
+
+   String getOrderWithUserDone(Long orderId,Long userId);
 }
 
 

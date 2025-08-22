@@ -13,9 +13,17 @@ public class OrderServiceImpl implements OrderService {
     @Autowired
     private OrderRepository orderRepository;
 
+//    @Autowired
+//    private UserClient userClient;
+
     @Override
     public List<Order> getAllOrders() {
         return orderRepository.findAll();
+    }
+    // 👇 Extra method to demonstrate Feign call
+    public String getOrderWithUser(Long orderId, Long userId) {
+        return orderRepository.getOrdersByUserId(userId, orderId);
+
     }
 
     @Override
@@ -24,9 +32,14 @@ public class OrderServiceImpl implements OrderService {
                 .orElseThrow(() -> new RuntimeException("Order not found with id " + id));
     }
 
+//    @Override
+//    public List<Order> getOrdersByUserId(Long userId) {
+//        return orderRepository.findByUserId(userId);
+//    }
     @Override
-    public List<Order> getOrdersByUserId(Long userId) {
-        return orderRepository.findByUserId(userId);
+    public String getOrderWithUserDone(Long orderId,Long userId) {
+        return orderRepository.getOrdersByUserId(orderId, userId);
+       // return "Order-" + orderId + " belongs to " + user;
     }
 
     @Override

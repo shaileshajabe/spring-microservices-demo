@@ -1,15 +1,43 @@
 server:
-  port: 8086
+  port: 8080
 
 spring:
   application:
     name: api-gateway
+
   cloud:
     gateway:
       discovery:
         locator:
           enabled: true
           lower-case-service-id: true
+
+      routes:
+        - id: product-service
+          uri: lb://product-service
+          predicates:
+            - Path=/product-service/**
+
+        - id: order-service
+          uri: lb://order-service
+          predicates:
+            - Path=/order-service/**
+
+        - id: user-service
+          uri: lb://user-service
+          predicates:
+            - Path=/user-service/**
+
+      globalcors:
+        corsConfigurations:
+          '[/**]':
+            allowedOrigins:
+              - "http://localhost:5173"   # product frontend
+              - "http://localhost:5174"   # order frontend
+              - "http://localhost:5175"   # user frontend
+            allowedMethods: "*"
+            allowedHeaders: "*"
+            allowCredentials: true
 
 eureka:
   client:
