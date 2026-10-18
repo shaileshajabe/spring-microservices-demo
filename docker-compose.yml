@@ -1,7 +1,6 @@
-
 services:
   eureka-server:
-    build: ./Eureka-Server
+    image: shaileshajabe/eureka-server:latest
     container_name: eureka-server
     ports:
       - "8761:8761"
@@ -15,11 +14,15 @@ services:
       MYSQL_ROOT_PASSWORD: ${MYSQL_ROOT_PASSWORD:-root}
       MYSQL_DATABASE: microservices_demo
     ports:
-      - "3307:3306"
+      - "3308:3306"
     volumes:
       - mysql-data:/var/lib/mysql
     healthcheck:
-      test: ["CMD-SHELL", "mysqladmin ping -h localhost -uroot -p\"$$MYSQL_ROOT_PASSWORD\" --silent"]
+      test:
+        [
+          "CMD-SHELL",
+          'mysqladmin ping -h localhost -uroot -p"$$MYSQL_ROOT_PASSWORD" --silent',
+        ]
       interval: 10s
       timeout: 5s
       retries: 10
@@ -28,7 +31,7 @@ services:
       - microservices-net
 
   api-gateway:
-    build: ./api-gateway
+    image: shaileshajabe/api-gateway:latest
     container_name: api-gateway
     ports:
       - "8086:8080"
@@ -40,7 +43,7 @@ services:
       - microservices-net
 
   user-service:
-    build: ./user-service
+    image: shaileshajabe/user-service:latest
     container_name: user-service
     depends_on:
       eureka-server:
@@ -58,7 +61,10 @@ services:
       - microservices-net
 
   product-service:
-    build: ./product-service
+    build:
+      context: ./productservice
+      dockerfile: Dockerfile
+    image: shaileshajabe/product-service:latest
     container_name: product-service
     depends_on:
       eureka-server:
@@ -71,12 +77,12 @@ services:
       SPRING_DATASOURCE_PASSWORD: ${MYSQL_ROOT_PASSWORD:-root}
       EUREKA_CLIENT_SERVICEURL_DEFAULTZONE: http://eureka-server:8761/eureka/
     ports:
-      - "8082:8082"
+      - "8084:8082"
     networks:
       - microservices-net
 
   order-service:
-    build: ./order-service
+    image: shaileshajabe/order-service:latest
     container_name: order-service
     depends_on:
       eureka-server:

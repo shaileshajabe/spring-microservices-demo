@@ -11,8 +11,8 @@
         <relativePath>../pom.xml</relativePath>
     </parent>
 
-    <artifactId>order-service</artifactId>
-    <name>order-service</name>
+    <artifactId>orderservice</artifactId>
+    <name>orderservice</name>
     <description>Order Service Microservice</description>
 
     <dependencies>
@@ -78,7 +78,7 @@
     </dependencies>
 
     <build>
-        <finalName>order-service</finalName>
+        <finalName>orderservice</finalName>
         <plugins>
             <plugin>
                 <groupId>org.springframework.boot</groupId>

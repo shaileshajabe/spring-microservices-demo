@@ -14,8 +14,8 @@
         <relativePath>../pom.xml</relativePath>
     </parent>
 
-    <artifactId>api-gateway</artifactId>
-    <name>api-gateway</name>
+    <artifactId>apigateway</artifactId>
+    <name>apigateway</name>
     <description>Spring Cloud API Gateway</description>
 
     <properties>
@@ -70,7 +70,7 @@
     </dependencyManagement>
 
     <build>
-        <finalName>api-gateway</finalName>
+        <finalName>apigateway</finalName>
         <plugins>
             <!-- Spring Boot Plugin -->
             <plugin>
