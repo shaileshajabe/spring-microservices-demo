@@ -6,9 +6,9 @@ spring:
                 name: order-service
 
         datasource:
-                url: jdbc:mysql://localhost:3306/ordersdb
+                url: jdbc:mysql://localhost:3307/ordersdb
                 username: root
-                password: Dada@1234
+                password: root
                 driver-class-name: com.mysql.cj.jdbc.Driver
 
         jpa:
@@ -23,3 +23,7 @@ eureka:
                         defaultZone: http://localhost:8761/eureka/
         instance:
                 prefer-ip-address: true
+
+aws:
+  sqs:
+    queue-url: http://localhost:4566/000000000000/orders-queue

@@ -1,5 +1,6 @@
-package com.example.orderservice.service;
+package com.example.orderservice.service.service.impl;
 
+import com.example.orderservice.service.OrderService;
 import com.example.orderservice.entity.Order;
 import com.example.orderservice.repository.OrderRepository;
 import org.springframework.beans.factory.annotation.Autowired;

@@ -18,10 +18,12 @@ public class OrderController {
     public List<Order> getAllOrders() {
         return orderService.getAllOrders();
     }
-   @GetMapping //("/{orderId}/user/{userId}")
-    public String getOrderWithUserDoneById(@PathVariable Long orderId,
-                                   @PathVariable Long userId) {
-       return orderService.getOrderWithUserDone(orderId, userId);
+
+    @GetMapping("/{orderId}/user/{userId}")
+    public String getOrderWithUserDoneById(
+            @PathVariable Long orderId,
+            @PathVariable Long userId) {
+        return orderService.getOrderWithUserDone(orderId, userId);
     }
 
     @GetMapping("/{id}")
@@ -29,10 +31,10 @@ public class OrderController {
         return orderService.getOrderById(id);
     }
 
-//    @GetMapping("/user/{userId}")
-//    public List<Order> getOrdersByUserId(@PathVariable Long userId) {
-//        return orderService.getOrdersByUserId(userId);
-//    }
+    // @GetMapping("/user/{userId}")
+    // public List<Order> getOrdersByUserId(@PathVariable Long userId) {
+    // return orderService.getOrdersByUserId(userId);
+    // }
 
     @PostMapping
     public Order createOrder(@RequestBody Order order) {

@@ -1,5 +1,3 @@
-package com.example.productservice.controller;
-
 import com.example.productservice.entity.Product;
 import com.example.productservice.service.ProductService;
 import lombok.RequiredArgsConstructor;
